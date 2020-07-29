@@ -19,21 +19,17 @@ before_install:
     - eval "${MATRIX_EVAL}"
 
 arch:
-    - amd64
+    - arm64-graviton2
     - arm64
 
 os:
     - linux
-    - osx
 
 compiler:
-    - clang
     - gcc
 
 env:
     - CONFIG_OPTS="" DESTDIR="_install"
-    - CONFIG_OPTS="no-asm -Werror --debug no-afalgeng no-shared enable-crypto-mdebug enable-rc5 enable-md2"
-    - CONFIG_OPTS="no-asm no-makedepend enable-buildtest-c++ --strict-warnings -D_DEFAULT_SOURCE" BUILDONLY="yes" CHECKDOCS="yes" GENERATE="yes" CPPFLAGS="-ansi"
 
 matrix:
     include:
@@ -49,51 +45,6 @@ matrix:
           dist: bionic
           compiler: clang
           env: CONFIG_OPTS="--strict-warnings -D__NO_STRING_INLINES no-deprecated" BUILDONLY="yes"
-        - os: linux
-          arch: arm64-graviton2
-          dist: focal
-          virt: lxd
-          group: edge
-          compiler: clang
-          addons:
-            apt:
-              packages:
-                - clang-6.0
-          env: EXTENDED_TEST="yes" CONFIG_OPTS="enable-msan disable-afalgeng -D__NO_STRING_INLINES -Wno-unused-command-line-argument" MATRIX_EVAL="CC=clang-6.0 && CXX=clang++-6.0" 
-        - os: linux
-          arch: arm64
-          compiler: clang
-          addons:
-              apt:
-                  packages:
-                      - clang-6.0
-          env: EXTENDED_TEST="yes" CONFIG_OPTS="enable-msan disable-afalgeng -D__NO_STRING_INLINES -Wno-unused-command-line-argument" MATRIX_EVAL="CC=clang-6.0 && CXX=clang++-6.0"
-        - os: linux
-          arch: arm64-graviton2
-          dist: focal
-          virt: lxd
-          group: edge
-          compiler: clang
-          addons:
-            apt:
-              packages:
-                - clang-6.0
-          env: EXTENDED_TEST="yes" CONFIG_OPTS="no-asm enable-ubsan enable-rc5 enable-md2 enable-ssl3 enable-ssl3-method enable-nextprotoneg no-shared enable-buildtest-c++ -DFUZZING_BUILD_MODE_UNSAFE_FOR_PRODUCTION -D__NO_STRING_INLINES -Wno-unused-command-line-argument" MATRIX_EVAL="CC=clang-6.0 && CXX=clang++-6.0" 
-        - os: linux
-          arch: arm64
-          compiler: clang
-          addons:
-              apt:
-                  packages:
-                      - clang-6.0
-          env: EXTENDED_TEST="yes" CONFIG_OPTS="no-asm enable-ubsan enable-rc5 enable-md2 enable-ssl3 enable-ssl3-method enable-nextprotoneg no-shared enable-buildtest-c++ -DFUZZING_BUILD_MODE_UNSAFE_FOR_PRODUCTION -D__NO_STRING_INLINES -Wno-unused-command-line-argument" MATRIX_EVAL="CC=clang-6.0 && CXX=clang++-6.0"
-    exclude:
-        - os: linux
-          compiler: clang
-        - os: osx
-          compiler: gcc
-        - arch: arm64
-          os: osx
 
 before_script:
     - env
