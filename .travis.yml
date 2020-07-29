@@ -29,6 +29,7 @@ matrix:
           group: edge
         - os: linux
           arch: arm64
+          virt: lxd
 
 before_script:
     - env
