@@ -37,7 +37,7 @@ matrix:
           group: edge
         - os: linux
           arch: arm64
-          dist: bionic
+          dist: focal
 
 before_script:
     - env
