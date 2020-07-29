@@ -35,12 +35,10 @@ matrix:
           dist: focal
           virt: lxd
           group: edge
-          compiler: clang
           env: CONFIG_OPTS="--strict-warnings -D__NO_STRING_INLINES no-deprecated" BUILDONLY="yes" 
         - os: linux
           arch: arm64
           dist: bionic
-          compiler: clang
           env: CONFIG_OPTS="--strict-warnings -D__NO_STRING_INLINES no-deprecated" BUILDONLY="yes"
 
 before_script:
