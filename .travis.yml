@@ -19,15 +19,17 @@ compiler:
     - gcc
 
 env:
-    - CONFIG_OPTS="" DESTDIR="_install"
+    - CONFIG_OPTS="no-tests" DESTDIR="_install"
 
 matrix:
     include:
-        - os: linux
+        - name: graviton2 lxd
+          os: linux
           arch: arm64-graviton2
           virt: lxd
           group: edge
-        - os: linux
+        - name: arm64 lxd
+          os: linux
           arch: arm64
           virt: lxd
 
