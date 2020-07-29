@@ -38,10 +38,28 @@ env:
 matrix:
     include:
         - os: linux
+          arch: arm64-graviton2
+          dist: focal
+          virt: lxd
+          group: edge
+          compiler: clang
+          env: CONFIG_OPTS="--strict-warnings -D__NO_STRING_INLINES no-deprecated" BUILDONLY="yes" 
+        - os: linux
           arch: arm64
           dist: bionic
           compiler: clang
           env: CONFIG_OPTS="--strict-warnings -D__NO_STRING_INLINES no-deprecated" BUILDONLY="yes"
+        - os: linux
+          arch: arm64-graviton2
+          dist: focal
+          virt: lxd
+          group: edge
+          compiler: clang
+          addons:
+            apt:
+              packages:
+                - clang-6.0
+          env: EXTENDED_TEST="yes" CONFIG_OPTS="enable-msan disable-afalgeng -D__NO_STRING_INLINES -Wno-unused-command-line-argument" MATRIX_EVAL="CC=clang-6.0 && CXX=clang++-6.0" 
         - os: linux
           arch: arm64
           compiler: clang
@@ -50,6 +68,17 @@ matrix:
                   packages:
                       - clang-6.0
           env: EXTENDED_TEST="yes" CONFIG_OPTS="enable-msan disable-afalgeng -D__NO_STRING_INLINES -Wno-unused-command-line-argument" MATRIX_EVAL="CC=clang-6.0 && CXX=clang++-6.0"
+        - os: linux
+          arch: arm64-graviton2
+          dist: focal
+          virt: lxd
+          group: edge
+          compiler: clang
+          addons:
+            apt:
+              packages:
+                - clang-6.0
+          env: EXTENDED_TEST="yes" CONFIG_OPTS="no-asm enable-ubsan enable-rc5 enable-md2 enable-ssl3 enable-ssl3-method enable-nextprotoneg no-shared enable-buildtest-c++ -DFUZZING_BUILD_MODE_UNSAFE_FOR_PRODUCTION -D__NO_STRING_INLINES -Wno-unused-command-line-argument" MATRIX_EVAL="CC=clang-6.0 && CXX=clang++-6.0" 
         - os: linux
           arch: arm64
           compiler: clang
