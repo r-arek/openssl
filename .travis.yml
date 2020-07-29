@@ -15,13 +15,6 @@ before_install:
       fi;
     - eval "${MATRIX_EVAL}"
 
-arch:
-    - arm64-graviton2
-    - arm64
-
-os:
-    - linux
-
 compiler:
     - gcc
 
