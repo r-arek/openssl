@@ -35,11 +35,9 @@ matrix:
           dist: focal
           virt: lxd
           group: edge
-          env: CONFIG_OPTS="--strict-warnings -D__NO_STRING_INLINES no-deprecated" BUILDONLY="yes" 
         - os: linux
           arch: arm64
           dist: bionic
-          env: CONFIG_OPTS="--strict-warnings -D__NO_STRING_INLINES no-deprecated" BUILDONLY="yes"
 
 before_script:
     - env
