@@ -32,12 +32,10 @@ matrix:
     include:
         - os: linux
           arch: arm64-graviton2
-          dist: focal
           virt: lxd
           group: edge
         - os: linux
           arch: arm64
-          dist: focal
 
 before_script:
     - env
