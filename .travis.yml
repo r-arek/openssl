@@ -31,7 +31,6 @@ matrix:
         - name: arm64 lxd
           os: linux
           arch: arm64
-          virt: lxd
         - name: graviton2 vm
           os: linux
           group: edge
