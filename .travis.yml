@@ -23,19 +23,10 @@ env:
 
 matrix:
     include:
-        - name: graviton2 lxd
+        - name: gce lxd
           os: linux
-          arch: arm64-graviton2
+          arch: amd64
           virt: lxd
-          group: edge
-        - name: arm64 lxd
-          os: linux
-          arch: arm64
-        - name: graviton2 vm
-          os: linux
-          group: edge
-          virt: vm
-          arch: arm64-graviton2
 
 before_script:
     - env
